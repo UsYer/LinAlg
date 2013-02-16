@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="LinAlg" />
+		<Option pch_mode="2" />
+		<Option compiler="gnu_gcc_compiler_tdragon_64" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/LinAlg" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gnu_gcc_compiler_tdragon_64" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/LinAlg" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gnu_gcc_compiler_tdragon_64" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-flto" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-flto" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c++11" />
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="$(#unittest.include)" />
+		</Compiler>
+		<Linker>
+			<Add library="UnitTest++64" />
+			<Add directory="$(#unittest.lib)" />
+		</Linker>
+		<Unit filename="include/Functions.hpp" />
+		<Unit filename="include/Matrix.hpp" />
+		<Unit filename="include/MatrixTest.hpp" />
+		<Unit filename="include/Vector.hpp" />
+		<Unit filename="include/VectorTest.hpp" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/Matrix.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
