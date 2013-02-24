@@ -18,6 +18,10 @@ namespace LinAlg
     {
 
     }
+    template <typename T>
+    T sum(Vector<T>);
+    template <typename T>
+    Vector<T> sum(Matrix<T>);
 }
 
 
