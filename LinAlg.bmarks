@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<BrowseTracker_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="include\Vector.hpp" open="1" top="0" tabpos="5">
+		<Cursor position="1098" topLine="0" />
+		<BrowseMarks positions="1058,1544" />
+		<Book_Marks positions="1210,1210" />
+	</File>
+	<File name="include\VectorTest.hpp" open="1" top="0" tabpos="6">
+		<Cursor position="193" topLine="0" />
+		<BrowseMarks positions="806,987" />
+		<Book_Marks positions="" />
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="145" topLine="0" />
+	</File>
+	<File name="include\Functions.hpp" open="1" top="1" tabpos="7">
+		<Cursor position="444" topLine="0" />
+		<BrowseMarks positions="124" />
+		<Book_Marks positions="" />
+	</File>
+	<File name="include\Matrix.hpp" open="1" top="0" tabpos="2">
+		<Cursor position="2550" topLine="65" />
+		<BrowseMarks positions="895,2482" />
+		<Book_Marks positions="" />
+	</File>
+	<File name="include\MatrixTest.hpp" open="1" top="0" tabpos="4">
+		<Cursor position="668" topLine="23" />
+		<BrowseMarks positions="1328,1428" />
+		<Book_Marks positions="" />
+	</File>
+</BrowseTracker_layout_file>

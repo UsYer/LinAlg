@@ -1,0 +1,201 @@
+# depslib dependency file v1.0
+1360858177 source:c:\users\marius\linalg\main.cpp
+	<iostream>
+	"include/Matrix.hpp"
+	"UnitTest++.h"
+
+1360851268 source:c:\users\marius\linalg\src\matrix.cpp
+	"../include/Matrix.hpp"
+
+1360858325 c:\users\marius\linalg\include\matrix.hpp
+	<vector>
+
+1188362910 e:\unittest++\src\unittest++.h
+	"Config.h"
+	"Test.h"
+	"TestList.h"
+	"TestSuite.h"
+	"TestResults.h"
+	"TestMacros.h"
+	"CheckMacros.h"
+	"TestRunner.h"
+	"TimeConstraint.h"
+
+1225373916 e:\unittest++\src\config.h
+
+1225287488 e:\unittest++\src\test.h
+	"TestDetails.h"
+
+1174314856 e:\unittest++\src\testdetails.h
+
+1180464158 e:\unittest++\src\testlist.h
+
+1174314856 e:\unittest++\src\testsuite.h
+
+1174314856 e:\unittest++\src\testresults.h
+
+1225391226 e:\unittest++\src\testmacros.h
+	"Config.h"
+	"ExecuteTest.h"
+	"AssertException.h"
+	"TestDetails.h"
+	"MemoryOutStream.h"
+	"Posix/SignalTranslator.h"
+
+1225287488 e:\unittest++\src\executetest.h
+	"TestDetails.h"
+	"MemoryOutStream.h"
+	"AssertException.h"
+	"CurrentTest.h"
+	"Posix/SignalTranslator.h"
+
+1174314856 e:\unittest++\src\memoryoutstream.h
+	"Config.h"
+	<sstream>
+	<cstddef>
+
+1174314856 e:\unittest++\src\assertexception.h
+	<exception>
+
+1225287488 e:\unittest++\src\currenttest.h
+
+1293906010 e:\unittest++\src\posix\signaltranslator.h
+	<setjmp.h>
+	<signal.h>
+
+1225287488 e:\unittest++\src\checkmacros.h
+	"Checks.h"
+	"AssertException.h"
+	"MemoryOutStream.h"
+	"TestDetails.h"
+	"CurrentTest.h"
+
+1225373262 e:\unittest++\src\checks.h
+	"Config.h"
+	"TestResults.h"
+	"MemoryOutStream.h"
+
+1225287488 e:\unittest++\src\testrunner.h
+	"Test.h"
+	"TestList.h"
+	"CurrentTest.h"
+
+1225287488 e:\unittest++\src\timeconstraint.h
+	"TimeHelpers.h"
+
+1174314856 e:\unittest++\src\timehelpers.h
+	"Config.h"
+	"Posix/TimeHelpers.h"
+	"Win32/TimeHelpers.h"
+
+1174314856 e:\unittest++\src\posix\timehelpers.h
+	<sys/time.h>
+
+1225373916 e:\unittest++\src\win32\timehelpers.h
+	"../Config.h"
+
+1360858197 source:c:\users\marius\desktop\quellcodes\linalg\src\matrix.cpp
+	"../include/Matrix.hpp"
+
+1361056640 c:\users\marius\desktop\quellcodes\linalg\include\matrix.hpp
+	<vector>
+	"Vector.hpp"
+
+1361058021 c:\users\marius\desktop\quellcodes\linalg\include\vector.hpp
+	<initializer_list>
+
+1361052419 source:c:\users\marius\desktop\quellcodes\linalg\main.cpp
+	<iostream>
+	"include/Matrix.hpp"
+	"UnitTest++.h"
+	"include/MatrixTest.hpp"
+	"include/VectorTest.hpp"
+
+1188362910 k:\unittest++\src\unittest++.h
+	"Config.h"
+	"Test.h"
+	"TestList.h"
+	"TestSuite.h"
+	"TestResults.h"
+	"TestMacros.h"
+	"CheckMacros.h"
+	"TestRunner.h"
+	"TimeConstraint.h"
+
+1225373916 k:\unittest++\src\config.h
+
+1225287488 k:\unittest++\src\test.h
+	"TestDetails.h"
+
+1174314856 k:\unittest++\src\testdetails.h
+
+1180464158 k:\unittest++\src\testlist.h
+
+1174314856 k:\unittest++\src\testsuite.h
+
+1174314856 k:\unittest++\src\testresults.h
+
+1225391226 k:\unittest++\src\testmacros.h
+	"Config.h"
+	"ExecuteTest.h"
+	"AssertException.h"
+	"TestDetails.h"
+	"MemoryOutStream.h"
+	"Posix/SignalTranslator.h"
+
+1225287488 k:\unittest++\src\executetest.h
+	"TestDetails.h"
+	"MemoryOutStream.h"
+	"AssertException.h"
+	"CurrentTest.h"
+	"Posix/SignalTranslator.h"
+
+1174314856 k:\unittest++\src\memoryoutstream.h
+	"Config.h"
+	<sstream>
+	<cstddef>
+
+1174314856 k:\unittest++\src\assertexception.h
+	<exception>
+
+1225287488 k:\unittest++\src\currenttest.h
+
+1224680202 k:\unittest++\src\posix\signaltranslator.h
+	<setjmp.h>
+	<signal.h>
+
+1225287488 k:\unittest++\src\checkmacros.h
+	"Checks.h"
+	"AssertException.h"
+	"MemoryOutStream.h"
+	"TestDetails.h"
+	"CurrentTest.h"
+
+1225373262 k:\unittest++\src\checks.h
+	"Config.h"
+	"TestResults.h"
+	"MemoryOutStream.h"
+
+1225287488 k:\unittest++\src\testrunner.h
+	"Test.h"
+	"TestList.h"
+	"CurrentTest.h"
+
+1225287488 k:\unittest++\src\timeconstraint.h
+	"TimeHelpers.h"
+
+1174314856 k:\unittest++\src\timehelpers.h
+	"Config.h"
+	"Posix/TimeHelpers.h"
+	"Win32/TimeHelpers.h"
+
+1174314856 k:\unittest++\src\posix\timehelpers.h
+	<sys/time.h>
+
+1225373916 k:\unittest++\src\win32\timehelpers.h
+	"../Config.h"
+
+1361056016 c:\users\marius\desktop\quellcodes\linalg\include\matrixtest.hpp
+
+1361058086 c:\users\marius\desktop\quellcodes\linalg\include\vectortest.hpp
+

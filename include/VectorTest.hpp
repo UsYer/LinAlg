@@ -48,5 +48,12 @@ TEST(EquivalenceInitializerList)
     bool res = (vals == v);
     CHECK(res);
 }
+TEST(Transpose)
+{
+    LinAlg::Vector<int> v = {1, 2, 3};
+    CHECK(v.is_col_vec());
+    v.transpose();
+    CHECK(!v.is_col_vec());
+}
 }
 #endif // VECTORTEST_HPP_INCLUDED
