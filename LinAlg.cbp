@@ -40,13 +40,13 @@
 			<Add library="UnitTest++64" />
 			<Add directory="$(#unittest.lib)" />
 		</Linker>
+		<Unit filename="include/FunctionTests.hpp" />
 		<Unit filename="include/Functions.hpp" />
 		<Unit filename="include/Matrix.hpp" />
 		<Unit filename="include/MatrixTest.hpp" />
 		<Unit filename="include/Vector.hpp" />
 		<Unit filename="include/VectorTest.hpp" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/Matrix.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
