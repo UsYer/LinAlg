@@ -6,13 +6,21 @@
 #include <algorithm>
 namespace LinAlg
 {
-    Matrix<int> zeros(unsigned m, unsigned n = m)
+    Matrix<int> zeros(unsigned n)
     {
-        return Matrix<int>(n,m,0);
+        return Matrix<int>(n,n,0);
+    }
+    Matrix<int> zeros(unsigned m, unsigned n)
+    {
+        return Matrix<int>(m,n,0);
     }
     Matrix<int> ones(unsigned n)
     {
-        return Matrix<int>(n,m,1);
+        return Matrix<int>(n,n,1);
+    }
+    Matrix<int> ones(unsigned m, unsigned n)
+    {
+        return Matrix<int>(n,n,1);
     }
     void magic()
     {
@@ -48,24 +56,41 @@ namespace LinAlg
     template <typename T>
     Matrix<T> transpose(const Matrix<T>& m)
     {
-        row_size = m.row_size();
-        Matrix<T> m_new(m.col_size(),row_size);
-        for( int i = 0; i < m.col_size() )
-            m_new[i+ row_size] = m[i];
+        if( m.empty() )
+            return m;
+
+        unsigned row_size = m.row_size();
+        unsigned col_size = m.col_size();
+        Matrix<T> m_new(col_size,row_size);
+        m_new[0] = m[0];
+        for( unsigned i = 1; i < col_size*row_size; ++i ) // first element always stays in its place
+            m_new[i+ i*(col_size)] = m[i];
 
         return m_new;
     }
     template <typename T>
-    T sum(Vector<T>);
+    T sum(const Vector<T>& v)
+    {
+        return std::accumulate(v.cbegin(),v.cend(),0);
+    }
     template <typename T>
-    Vector<T> sum(Matrix<T>);
+    Vector<T> sum(const Matrix<T>& m)
+    {
+        Vector<T> v(m.col_size());
+        for( unsigned col = 0; col < m.col_size(); ++col )
+        {
+            v[col] = sum(m.col(col));
+        }
+        return v;
+    }
 
     template <typename T>
-    T norm(Vector<T> v,unsigned p = 2)
+    double norm(const Vector<T>& v,unsigned p = 2)
     {
         //sum(abs(A).^p)^(1/p)
-        auto abs_pow = [p](T val){return std::pow(std::abs(val),p)};
-        return std::pow(std::accumulate(v.cbegin(),v.cend(),0,abs_pow),1/p);
+        auto abs_pow = [p](T res, T val){return res + std::pow(std::abs(val),p);};
+        auto sum = std::accumulate(v.cbegin(),v.cend(),0,abs_pow);
+        return std::pow(sum,1.0f/p);
     }
     enum Norm
     {
@@ -73,7 +98,7 @@ namespace LinAlg
         fro
     };
     template <typename T>
-    T norm(Matrix<T> m, Norm n)
+    T norm(const Matrix<T>& m, Norm n)
     {
         if( n == Norm::inf )
         {

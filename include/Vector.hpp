@@ -11,8 +11,12 @@ template<typename Type>
 class Vector
 {
     public:
+        using const_iterator = typename std::vector<Type>::const_iterator;
+        using iterator = typename std::vector<Type>::iterator;
+
         /** Default constructor */
         Vector() {}
+        Vector(const Vector<Type>& other);
         Vector(Vector<Type>&& v);
         Vector(unsigned num_elements);
         ///creates Vector with num_elements of val
@@ -35,25 +39,26 @@ class Vector
         {
             return m_is_col;
         }
-        void transpose()
+        Vector<Type>& transpose()
         {
             m_is_col = !m_is_col;
+            return *this;
         }
 
         //-- iterator interface --
-        std::vector<Type>::const_iterator cbegin() const
+        const_iterator cbegin() const
         {
             return m_elements.cbegin();
         }
-        std::vector<Type>::const_iterator begin() const
+        const_iterator begin() const
         {
             return m_elements.begin();
         }
-        std::vector<Type>::const_iterator cend() const
+        const_iterator cend() const
         {
             return m_elements.cend();
         }
-        std::vector<Type>::const_iterator end() const
+        const_iterator end() const
         {
             return m_elements.end();
         }
@@ -62,12 +67,14 @@ class Vector
         const Type& operator[](std::size_t idx) const;
 
         template <typename T>
-        friend bool operator==(std::initializer_list<T>& vals, Vector<T> v);
+        friend bool operator==(std::initializer_list<T>& vals,const Vector<T>& v);
         template <typename T>
         friend bool operator==(const Vector<T>& lhs, const Vector<T>& rhs);
         template <typename T>
         friend bool operator< (const Vector<T>& lhs, const Vector<T>& rhs);
 
+        template<typename T>
+        friend std::ostream& operator<<(std::ostream& os, const Vector<T>& v );
     protected:
     private:
         std::vector<Type> m_elements;
@@ -75,11 +82,18 @@ class Vector
 };
 template<typename Type>
 Vector<Type>::Vector(Vector<Type>&& v):
-    m_elements(std::move(v))
+    m_elements(std::move(v.m_elements)),
+    m_is_col(v.m_is_col)
 {
 
 }
+template<typename Type>
+Vector<Type>::Vector(const Vector<Type>& v):
+    m_elements(v.m_elements),
+    m_is_col(v.m_is_col)
+{
 
+}
 template<typename Type>
 Vector<Type>::Vector(unsigned num_elements):
     m_elements(num_elements, Type())
@@ -106,7 +120,7 @@ const Type& Vector<Type>::operator[](std::size_t idx) const
     return m_elements[idx];
 }
 template <typename T>
-bool operator==(std::initializer_list<T>& vals, Vector<T> v)
+bool operator==(std::initializer_list<T>& vals, const Vector<T>& v)
 {
     if( vals.size() != v.size() )
         return false;
@@ -122,7 +136,7 @@ bool operator==(std::initializer_list<T>& vals, Vector<T> v)
 template <typename T>
 inline bool operator==(const Vector<T>& lhs, const Vector<T>& rhs)
 {
-    return lhs.m_elements == rhs.m_elements;
+    return lhs.m_elements == rhs.m_elements && lhs.m_is_col == rhs.m_is_col;
 }
 template <typename T>
 inline bool operator!=(const Vector<T>& lhs, const Vector<T>& rhs)
@@ -132,7 +146,7 @@ inline bool operator!=(const Vector<T>& lhs, const Vector<T>& rhs)
 template <typename T>
 inline bool operator< (const Vector<T>& lhs, const Vector<T>& rhs)
 {
-    return lhs.m_elements < rhs.m_elements;
+    return lhs.m_elements < rhs.m_elements && lhs.m_is_col == rhs.m_is_col; // the orientation must be the same because the dimension must agree for comparison
 }
 template <typename T>
 inline bool operator> (const Vector<T>& lhs, const Vector<T>& rhs){return  operator< (rhs,lhs);}
@@ -140,5 +154,17 @@ template <typename T>
 inline bool operator<=(const Vector<T>& lhs, const Vector<T>& rhs){return !operator> (lhs,rhs);}
 template <typename T>
 inline bool operator>=(const Vector<T>& lhs, const Vector<T>& rhs){return !operator< (lhs,rhs);}
+
+template<typename Type>
+std::ostream& operator<<(std::ostream& os, const Vector<Type>& v )
+{
+    const char* sep = v.is_col_vec() ? "\n" : " ";
+    for(auto elem : v.m_elements)
+    {
+        os << elem << sep;
+    }
+    return os;
+}
+
 } //ns LinAlg
 #endif // VECTOR_HPP

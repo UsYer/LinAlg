@@ -8,6 +8,9 @@ template <typename Type>
 class Matrix
 {
     public:
+        using const_iterator = typename std::vector<Vector<Type>>::const_iterator;
+        using iterator = typename std::vector<Vector<Type>>::iterator;
+
         /** Default constructor */
         Matrix();
         Matrix(unsigned rows, unsigned cols);
@@ -27,6 +30,7 @@ class Matrix
 
         Type& operator[](std::size_t idx);
         const Type& operator[](std::size_t idx) const;
+        Vector<Type> col(unsigned col) const;
 
         std::size_t size() const
         {
@@ -41,6 +45,9 @@ class Matrix
             return m_cols.size();
         }
         bool empty() const;
+
+        template<typename T>
+        friend std::ostream& operator<<(std::ostream& os, const Matrix<T>&m );
     protected:
     private:
         std::vector<Vector<Type>> m_cols;
@@ -112,6 +119,13 @@ const Type& Matrix<Type>::operator[](std::size_t idx) const
     else return m_cols[0][idx];
 }
 template <typename Type>
+Vector<Type> Matrix<Type>::col(unsigned col) const
+{
+    return m_cols[col];
+}
+
+
+template <typename Type>
 bool Matrix<Type>::empty() const
 {
     for(const auto& col : m_cols)
@@ -121,5 +135,17 @@ bool Matrix<Type>::empty() const
     }
     return true;
 }
+template<typename Type>
+std::ostream& operator<<(std::ostream& os, const Matrix<Type>& m )
+{
+    for(unsigned row = 0; row < m.row_size(); ++row )
+    {
+        for(unsigned col = 0; col < m.col_size(); ++col )
+            os << m.m_cols[col][row] << "\t";
+        os << "\n";
+    }
+    return os;
+}
+
 }//ns LinAlg
 #endif // MATRIX_H
