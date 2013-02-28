@@ -27,12 +27,12 @@ TEST(MatrixTranspose)
 {
     LinAlg::Matrix<int> m = {{1, 3, 5},{2, 4, 6}};
     auto m_t = LinAlg::transpose(m);
-    CHECK_EQUAL(1, m[0]);
-    CHECK_EQUAL(2, m[1]);
-    CHECK_EQUAL(3, m[2]);
-    CHECK_EQUAL(4, m[3]);
-    CHECK_EQUAL(5, m[4]);
-    CHECK_EQUAL(6, m[5]);
+    CHECK_EQUAL(1, m_t[0]);
+    CHECK_EQUAL(2, m_t[1]);
+    CHECK_EQUAL(3, m_t[2]);
+    CHECK_EQUAL(4, m_t[3]);
+    CHECK_EQUAL(5, m_t[4]);
+    CHECK_EQUAL(6, m_t[5]);
 }
 TEST(MaxVectorCol)
 {

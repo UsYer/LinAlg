@@ -82,16 +82,17 @@ Matrix<Type>::~Matrix()
     //dtor
 }
 template <typename Type>
-Matrix<Type>::Matrix(const Matrix<Type>& other)
+Matrix<Type>::Matrix(const Matrix<Type>& other):
+    m_cols(other.m_cols)
 {
     //copy ctor
 }
-
+// FIXME (Marius#9#): Implement assignment operator in an idiomatic way
 template <typename Type>
 Matrix<Type>& Matrix<Type>::operator=(const Matrix<Type>& rhs)
 {
     if (this == &rhs) return *this; // handle self assignment
-    //assignment operator
+    m_cols = rhs.m_cols;
     return *this;
 }
 template <typename Type>

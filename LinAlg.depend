@@ -199,3 +199,31 @@
 
 1361058086 c:\users\marius\desktop\quellcodes\linalg\include\vectortest.hpp
 
+1362059216 source:c:\users\marius\documents\github\linalg\main.cpp
+	<iostream>
+	"include/Matrix.hpp"
+	"UnitTest++.h"
+	"include/MatrixTest.hpp"
+	"include/VectorTest.hpp"
+	"include/FunctionTests.hpp"
+
+1362060866 c:\users\marius\documents\github\linalg\include\matrix.hpp
+	<vector>
+	"Vector.hpp"
+
+1362059216 c:\users\marius\documents\github\linalg\include\vector.hpp
+	<initializer_list>
+
+1361111462 c:\users\marius\documents\github\linalg\include\matrixtest.hpp
+
+1361884062 c:\users\marius\documents\github\linalg\include\vectortest.hpp
+
+1362059712 c:\users\marius\documents\github\linalg\include\functiontests.hpp
+	"Functions.hpp"
+
+1362059627 c:\users\marius\documents\github\linalg\include\functions.hpp
+	<stdexcept>
+	<numeric>
+	<cmath>
+	<algorithm>
+

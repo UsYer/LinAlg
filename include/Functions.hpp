@@ -62,9 +62,15 @@ namespace LinAlg
         unsigned row_size = m.row_size();
         unsigned col_size = m.col_size();
         Matrix<T> m_new(col_size,row_size);
-        m_new[0] = m[0];
-        for( unsigned i = 1; i < col_size*row_size; ++i ) // first element always stays in its place
-            m_new[i+ i*(col_size)] = m[i];
+
+        int j = 0;
+        for( unsigned i = 0; i < row_size; ++i )
+        {
+            for( unsigned k = 0; k < col_size; ++k )
+            {
+                m_new[j++] = m[i+k*row_size];
+            }
+        }
 
         return m_new;
     }
