@@ -41,12 +41,22 @@ namespace LinAlg
     template <typename T>
     Vector<T> max(Matrix<T> m)
     {
-
+        Vector<T> v(m.col_size());
+        for( unsigned col = 0; col < m.col_size(); ++col )
+        {
+            v[col] = max(m.col(col));
+        }
+        return v;
     }
     template <typename T>
     Vector<T> diag(const Matrix<T>& m)
     {
-
+        Vector<T> v(m.col_size());
+        for( unsigned col = 0; col < m.col_size(); ++col )
+        {
+            v[col] = m.col(col)[col];
+        }
+        return v;
     }
     template <typename T>
     Vector<T> transpose(Vector<T> v) //since we need a copy in every case we use copy-by-value and leverage copy-ellision
@@ -89,7 +99,44 @@ namespace LinAlg
         }
         return v;
     }
-
+    template <typename T>
+    Vector<T> abs(Vector<T> v)
+    {
+        for( auto& elem: v )
+        {
+            elem = std::abs(elem);
+        }
+        return v;
+    }
+    template <typename T>
+    Matrix<T> abs(Matrix<T> m)
+    {
+        for( unsigned col = 0; col < m.col_size(); ++col )
+        {
+            m.col(col) = abs(m.col(col));
+        }
+        return m;
+    }
+    template <typename T>
+    Vector<T> sqrt(Vector<T> v)
+    {
+        for( auto& elem: v )
+        {
+            if( elem < 0 )
+                throw std::invalid_argument("Only non-negative numbers are allowed for sqrt.");
+            elem = std::sqrt(elem);
+        }
+        return v;
+    }
+    template <typename T>
+    Matrix<T> sqrt(Matrix<T> m)
+    {
+        for( unsigned col = 0; col < m.col_size(); ++col )
+        {
+            m.col(col) = sqrt(m.col(col));
+        }
+        return m;
+    }
     template <typename T>
     double norm(const Vector<T>& v,unsigned p = 2)
     {
@@ -109,12 +156,13 @@ namespace LinAlg
         if( n == Norm::inf )
         {
             //max(sum(abs(A')))
-            return 0;
+            return max(sum(abs(transpose(m))));
         }
         else if(n == Norm::fro)
         {
-        //fro:
-        //sqrt(sum(diag(A'*A))).
+            //fro:
+            //sqrt(sum(diag(A'*A))).
+            //return sqrt(sum(diag(transpose(m)*m)));
             return 0;
         }
     }
@@ -123,14 +171,13 @@ namespace LinAlg
     {
         if( p == 1 )
         {
-            //max(sum(abs(A')))
-            return 0;
+            //max(sum(abs(A)))
+            return max(sum(abs(m)));
         }
         else if(p == 2)
         {
-        //fro:
-        //sqrt(sum(diag(A'*A))).
-            return 0;
+
+            return 0;//max(svd(A));
         }
         else throw std::invalid_argument("The only matrix norms available are 1, 2, inf, and fro.");
     }

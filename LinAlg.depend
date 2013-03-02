@@ -97,19 +97,21 @@
 1360858197 source:c:\users\marius\desktop\quellcodes\linalg\src\matrix.cpp
 	"../include/Matrix.hpp"
 
-1361056640 c:\users\marius\desktop\quellcodes\linalg\include\matrix.hpp
+1362087408 c:\users\marius\desktop\quellcodes\linalg\include\matrix.hpp
 	<vector>
 	"Vector.hpp"
 
-1361058021 c:\users\marius\desktop\quellcodes\linalg\include\vector.hpp
+1362265504 c:\users\marius\desktop\quellcodes\linalg\include\vector.hpp
 	<initializer_list>
+	<stdexcept>
 
-1361052419 source:c:\users\marius\desktop\quellcodes\linalg\main.cpp
+1361995087 source:c:\users\marius\desktop\quellcodes\linalg\main.cpp
 	<iostream>
 	"include/Matrix.hpp"
 	"UnitTest++.h"
 	"include/MatrixTest.hpp"
 	"include/VectorTest.hpp"
+	"include/FunctionTests.hpp"
 
 1188362910 k:\unittest++\src\unittest++.h
 	"Config.h"
@@ -197,7 +199,8 @@
 
 1361056016 c:\users\marius\desktop\quellcodes\linalg\include\matrixtest.hpp
 
-1361058086 c:\users\marius\desktop\quellcodes\linalg\include\vectortest.hpp
+1362265486 c:\users\marius\desktop\quellcodes\linalg\include\vectortest.hpp
+	"Functions.hpp"
 
 1362059216 source:c:\users\marius\documents\github\linalg\main.cpp
 	<iostream>
@@ -222,6 +225,15 @@
 	"Functions.hpp"
 
 1362059627 c:\users\marius\documents\github\linalg\include\functions.hpp
+	<stdexcept>
+	<numeric>
+	<cmath>
+	<algorithm>
+
+1362091541 c:\users\marius\desktop\quellcodes\linalg\include\functiontests.hpp
+	"Functions.hpp"
+
+1362261672 c:\users\marius\desktop\quellcodes\linalg\include\functions.hpp
 	<stdexcept>
 	<numeric>
 	<cmath>

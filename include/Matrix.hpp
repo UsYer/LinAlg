@@ -22,15 +22,23 @@ class Matrix
          *  \param other Object to copy from
          */
         Matrix(const Matrix& other);
+        /** Move constructor
+         *  \param other Object to move from
+         */
+        Matrix(Matrix&& other);
         /** Assignment operator
          *  \param other Object to assign from
          *  \return A reference to this
          */
-        Matrix& operator=(const Matrix& other);
+        Matrix& operator=(Matrix other);
+
+        template <typename T>
+        friend void swap(Matrix<T>& lhs, Matrix<T>& rhs) noexcept;
 
         Type& operator[](std::size_t idx);
         const Type& operator[](std::size_t idx) const;
-        Vector<Type> col(unsigned col) const;
+        Vector<Type>& col(unsigned col);
+        const Vector<Type>& col(unsigned col) const;
 
         std::size_t size() const
         {
@@ -87,14 +95,30 @@ Matrix<Type>::Matrix(const Matrix<Type>& other):
 {
     //copy ctor
 }
+template <typename Type>
+Matrix<Type>::Matrix(Matrix<Type>&& other):
+    Matrix()
+{
+    swap(*this, other);
+}
 // FIXME (Marius#9#): Implement assignment operator in an idiomatic way
 template <typename Type>
-Matrix<Type>& Matrix<Type>::operator=(const Matrix<Type>& rhs)
+Matrix<Type>& Matrix<Type>::operator=(Matrix<Type> rhs)
 {
-    if (this == &rhs) return *this; // handle self assignment
-    m_cols = rhs.m_cols;
+    swap(*this,rhs);
     return *this;
 }
+template <typename Type>
+void swap(Matrix<Type>& lhs, Matrix<Type>& rhs) noexcept
+{
+    // enable ADL (not necessary in our case, but good practice)
+    using std::swap;
+
+    // by swapping the members of two classes,
+    // the two classes are effectively swapped
+    swap(lhs.m_cols, rhs.m_cols);
+}
+
 template <typename Type>
 Type& Matrix<Type>::operator[](std::size_t idx)
 {
@@ -119,8 +143,15 @@ const Type& Matrix<Type>::operator[](std::size_t idx) const
     }
     else return m_cols[0][idx];
 }
+
 template <typename Type>
-Vector<Type> Matrix<Type>::col(unsigned col) const
+Vector<Type>& Matrix<Type>::col(unsigned col)
+{
+    return m_cols[col];
+}
+
+template <typename Type>
+const Vector<Type>& Matrix<Type>::col(unsigned col) const
 {
     return m_cols[col];
 }
