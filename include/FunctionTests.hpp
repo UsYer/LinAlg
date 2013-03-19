@@ -48,9 +48,82 @@ TEST(MaxMatrix)
 {
  LinAlg::Matrix<int> m = {{1, 3, 5},{2, 4, 6}};
  LinAlg::Vector<int> v = LinAlg::max(m);
- CHECK_EQUAL(2, v.size());
+ CHECK_EQUAL(2u, v.size());
  CHECK_EQUAL(5, v[0]);
  CHECK_EQUAL(6, v[1]);
+}
+TEST(MinVectorCol)
+{
+ LinAlg::Vector<int> v = {1, 3, 2};
+ CHECK_EQUAL(1, LinAlg::min(v));
+}
+TEST(MinVectorRow)
+{
+ LinAlg::Vector<int> v = {1, 3, 2};
+ CHECK_EQUAL(1, LinAlg::min(v.transpose()));
+}
+TEST(MinMatrix)
+{
+ LinAlg::Matrix<int> m = {{1, 3, 5},{2, 4, 6}};
+ LinAlg::Vector<int> v = LinAlg::min(m);
+ CHECK_EQUAL(2u, v.size());
+ CHECK_EQUAL(1, v[0]);
+ CHECK_EQUAL(2, v[1]);
+}
+TEST(MinIndexVector)
+{
+    //[ignore, i] = min(distances);
+    LinAlg::Vector<int> v = {3, 1, 2};
+    auto pos_it = v.end();
+    auto res = LinAlg::min(v,pos_it);
+    CHECK_EQUAL(1, res);
+    CHECK_EQUAL(1, *pos_it);
+}
+TEST(RoundVectorCol)
+{
+ LinAlg::Vector<double> v = {-1.5, 3.9, 1.1};
+ LinAlg::Vector<double> v_round = {-2,4,1};
+ CHECK_EQUAL(v_round, LinAlg::round(v));
+}
+TEST(RoundVectorRow)
+{
+ LinAlg::Vector<double> v = {-1.5, 3.9, 1.1};
+ LinAlg::Vector<double> v_round = {-2,4,1};
+ CHECK_EQUAL(v_round.transpose(), LinAlg::round(v.transpose()));
+}
+TEST(RoundMatrix)
+{
+ LinAlg::Matrix<double> m = {{-1.5, 3.9, 1.1},{-1.5, 3.9, 1.1}};
+ LinAlg::Matrix<double> m_round = LinAlg::round(m);
+ CHECK_EQUAL(-2, m_round[0]);
+ CHECK_EQUAL(4, m_round[1]);
+ CHECK_EQUAL(1, m_round[2]);
+ CHECK_EQUAL(-2, m_round[3]);
+ CHECK_EQUAL(4, m_round[4]);
+ CHECK_EQUAL(1, m_round[5]);
+}
+TEST(FixVectorCol)
+{
+ LinAlg::Vector<double> v = {-1.5, 3.9, 1.1};
+ LinAlg::Vector<double> v_fix = {-1,3,1};
+ CHECK_EQUAL(v_fix, LinAlg::fix(v));
+}
+TEST(FixVectorRow)
+{
+ LinAlg::Vector<double> v = {-1.5, 3.9, 1.1};
+ LinAlg::Vector<double> v_fix = {-1,3,1};
+ CHECK_EQUAL(v_fix.transpose(), LinAlg::fix(v.transpose()));
+}
+TEST(FixMatrix)
+{
+ LinAlg::Matrix<double> m = {{-1.5, 3.9, 1.1},{-1.5, 3.9, 1.1}};
+ LinAlg::Matrix<double> m_fix = LinAlg::fix(m);
+ CHECK_EQUAL(-1, m_fix[0]);
+ CHECK_EQUAL(3, m_fix[1]);
+ CHECK_EQUAL(1, m_fix[2]);
+ CHECK_EQUAL(-1, m_fix[3]);
+ CHECK_EQUAL(3, m_fix[4]);
+ CHECK_EQUAL(1, m_fix[5]);
 }
 TEST(AbsVectorCol)
 {
@@ -130,5 +203,20 @@ TEST(DiagMatrix)
  CHECK_EQUAL(2, v.size());
  CHECK_EQUAL(1, v[0]);
  CHECK_EQUAL(4, v[1]);
+}
+TEST(DotVector)
+{
+ LinAlg::Vector<int> v1 = {-1, -3, -2};
+ LinAlg::Vector<int> v2 = {2, -4, -7};
+ auto res = LinAlg::dot(v1,v2);
+ CHECK_EQUAL(24, res);
+}
+TEST(DotMatrix)
+{
+ LinAlg::Matrix<int> m = {{1,2,3},{4,5,6},{7,8,9}};
+ LinAlg::Vector<int> v = LinAlg::dot(m,m);
+ CHECK_EQUAL(14, v[0]);
+ CHECK_EQUAL(77, v[1]);
+ CHECK_EQUAL(194, v[2]);
 }
 #endif // FUNCTIONTESTS_HPP_INCLUDED

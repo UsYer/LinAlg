@@ -6,26 +6,26 @@ SUITE(VectorTest)
 TEST(PreallocateMemory)
 {
  LinAlg::Vector<int> v(20);
- CHECK_EQUAL(20, v.size());
+ CHECK_EQUAL(20u, v.size());
  CHECK(!v.empty());
 }
 TEST(DefaultConstruct)
 {
  LinAlg::Vector<int> v;
- CHECK_EQUAL(0, v.size());
+ CHECK_EQUAL(0u, v.size());
  CHECK(v.empty());
 }
 
 TEST(ConstructWithInitializerList)
 {
     LinAlg::Vector<int> v = {1, 2, 3, 4};
-    CHECK_EQUAL(4, v.size());
+    CHECK_EQUAL(4u, v.size());
     CHECK_EQUAL(3, v[2]);
 }
 TEST(ConstructFilled)
 {
     LinAlg::Vector<int> v(4,13);
-    CHECK_EQUAL(4, v.size());
+    CHECK_EQUAL(4u, v.size());
     CHECK_EQUAL(13, v[0]);
     CHECK_EQUAL(13, v[1]);
     CHECK_EQUAL(13, v[2]);

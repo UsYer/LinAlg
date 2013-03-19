@@ -262,21 +262,23 @@ inline Vector<T> operator*(Vector<T> lhs, T rhs)
   return lhs;
 }
 //-- vector-vector multiplication --
-template<typename T>
-Vector<T>& Vector<T>::operator*=(const Vector<T>& rhs)
-{
-    if( m_is_col && !rhs.is_col_vec() ) // scalar product: a*b'
-    {
-        if( size() != rhs.size() )
-            throw std::invalid_argument("Dimensions must be equal.");
-
-        T sum = 0;
-        for( auto it = m_elements.begin(), it_rhs = rhs.begin(); it != m_elements.end(); ++it, ++it_rhs)
-            sum = *it * *it_rhs;
-        //how do we return sum??
-    }
-
-    return *this;
-}
+// Not possible right now, because it's not clear what should be returned.
+// Could either be a scalar or a Matrix.
+//template<typename T>
+//Vector<T>& Vector<T>::operator*=(const Vector<T>& rhs)
+//{
+//    if( !m_is_col && rhs.is_col_vec() ) // scalar product: a'*b
+//    {
+//        if( size() != rhs.size() )
+//            throw std::invalid_argument("Dimensions must be equal.");
+//
+//        T sum = 0;
+//        for( auto it = m_elements.begin(), it_rhs = rhs.begin(); it != m_elements.end(); ++it, ++it_rhs)
+//            sum += *it * *it_rhs;
+//        //how do we return sum??
+//    }
+//
+//    return *this;
+//}
 } //ns LinAlg
 #endif // VECTOR_HPP

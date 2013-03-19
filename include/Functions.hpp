@@ -26,9 +26,41 @@ namespace LinAlg
     {
 
     }
-    void round()
+    template <typename T>
+    Vector<T> round(Vector<T> v)
     {
-
+        for( auto& elem: v )
+        {
+            elem = std::round(elem);
+        }
+        return v;
+    }
+    template <typename T>
+    Matrix<T> round(Matrix<T> m)
+    {
+        for( unsigned col = 0; col < m.col_size(); ++col )
+        {
+            m.col(col) = round(m.col(col));
+        }
+        return m;
+    }
+    template <typename T>
+    Vector<T> fix(Vector<T> v)
+    {
+        for( auto& elem: v )
+        {
+            elem = std::trunc(elem);
+        }
+        return v;
+    }
+    template <typename T>
+    Matrix<T> fix(Matrix<T> m)
+    {
+        for( unsigned col = 0; col < m.col_size(); ++col )
+        {
+            m.col(col) = fix(m.col(col));
+        }
+        return m;
     }
     template <typename T>
     T max(Vector<T> v)
@@ -45,6 +77,42 @@ namespace LinAlg
         for( unsigned col = 0; col < m.col_size(); ++col )
         {
             v[col] = max(m.col(col));
+        }
+        return v;
+    }
+    template <typename T>
+    T min(Vector<T> v)
+    {
+        auto it = std::min_element(v.cbegin(), v.cend());
+        if( it == v.cend() )
+            return 0;
+        else return *it;
+    }
+    ///Finds min value in a vector and sets pos_it to where it was found.
+    ///pos_it points at Vector::end if the vector is empty.
+    ///@return Min value in vector v, or 0 if vector is empty
+    template <typename T>
+    T min(Vector<T> v, typename Vector<T>::iterator& pos_it)
+    {
+        auto it = std::min_element(v.begin(), v.end());
+        if( it == v.end() )
+        {
+            pos_it = it;
+            return 0;
+        }
+        else
+        {
+            pos_it = it;
+            return *it;
+        }
+    }
+    template <typename T>
+    Vector<T> min(Matrix<T> m)
+    {
+        Vector<T> v(m.col_size());
+        for( unsigned col = 0; col < m.col_size(); ++col )
+        {
+            v[col] = min(m.col(col));
         }
         return v;
     }
@@ -136,6 +204,31 @@ namespace LinAlg
             m.col(col) = sqrt(m.col(col));
         }
         return m;
+    }
+    template <typename T>
+    T dot(const Vector<T>& lhs, const Vector<T>& rhs)
+    {
+        if( lhs.size() != rhs.size() )
+            throw std::invalid_argument("Dimensions must be equal.");
+
+        T sum = 0;
+        for( auto it = lhs.begin(), it_rhs = rhs.begin(); it != lhs.end(); ++it, ++it_rhs)
+            sum += *it * *it_rhs;
+        return sum;
+    }
+    ///Calls dot with each column of A and B: dot(A_i, B_i)
+    template <typename T>
+    Vector<T> dot(const Matrix<T>& m1, const Matrix<T>& m2)
+    {
+        if( m1.size() != m2.size() )
+            throw std::invalid_argument("Dimensions must be equal.");
+
+        Vector<T> v(m1.col_size());
+        for( unsigned col = 0; col < m1.col_size(); ++col )
+        {
+            v[col] = dot(m1.col(col),m2.col(col));
+        }
+        return v;
     }
     template <typename T>
     double norm(const Vector<T>& v,unsigned p = 2)
